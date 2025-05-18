@@ -1,5 +1,3 @@
-Perfeito! Abaixo está um **README mais elaborado e profissional**, mantendo a simplicidade e clareza. Adicionei também a autoria e a instituição conforme solicitado.
-
 ---
 
 ## 🛵 Projeto SQL – Sistema de Gestão de Motos
