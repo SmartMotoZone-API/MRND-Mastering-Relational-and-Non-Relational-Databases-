@@ -83,5 +83,3 @@ Yamaha Fazer        | Suzuki Yes     | Honda Biz
 Disciplina: **MRND – Mastering Relational and Non-Relational Databases**
 
 ---
-
-Se quiser, posso salvar esse conteúdo em um arquivo `.md` para você colar direto no GitHub. Deseja isso?
