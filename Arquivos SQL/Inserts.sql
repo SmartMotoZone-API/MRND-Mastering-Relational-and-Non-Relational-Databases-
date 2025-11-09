@@ -1,41 +1,39 @@
--- 3) INSERTS (pais primeiro, depois filhos)
+-- 3.1) Clientes
+INSERT INTO tb_cliente (nome, email) VALUES ('Ana Souza', 'ana@exemplo.com');
+INSERT INTO tb_cliente (nome, email) VALUES ('Bruno Lima', 'bruno@exemplo.com');
+INSERT INTO tb_cliente (nome, email) VALUES ('Carla Nunes', 'carla@exemplo.com');
+INSERT INTO tb_cliente (nome, email) VALUES ('Diego Torres', 'diego@exemplo.com');
+INSERT INTO tb_cliente (nome, email) VALUES ('Eva Prado', 'eva@exemplo.com');
 
--- 3.1) Zonas
-INSERT INTO zonas VALUES ('A1', 'Zona de entrada', 'Frontal');
-INSERT INTO zonas VALUES ('A2', 'Zona de espera',  'Frontal');
-INSERT INTO zonas VALUES ('B1', 'Zona de manobra', 'Lateral');
-INSERT INTO zonas VALUES ('B2', 'Zona de carga',   'Lateral');
-INSERT INTO zonas VALUES ('C1', 'Zona de manuten��o','Traseira');
+-- 3.2) Motos
+INSERT INTO tb_moto (cliente_id, placa, modelo, cor) VALUES (1,'AAA1A11','CG 160','Vermelha');
+INSERT INTO tb_moto (cliente_id, placa, modelo, cor) VALUES (2,'BBB2B22','Fazer 250','Preta');
+INSERT INTO tb_moto (cliente_id, placa, modelo, cor) VALUES (3,'CCC3C33','NMAX 160','Azul');
+INSERT INTO tb_moto (cliente_id, placa, modelo, cor) VALUES (4,'DDD4D44','XRE 300','Branca');
+INSERT INTO tb_moto (cliente_id, placa, modelo, cor) VALUES (5,'EEE5E55','MT-03','Cinza');
 
--- 3.2) Funcion�rios (IDs manuais)
-INSERT INTO funcionarios (id, nome, email, cargo) VALUES (1, 'Jo�o Silva',    'joao@email.com',    'T�cnico');
-INSERT INTO funcionarios (id, nome, email, cargo) VALUES (2, 'Ana Lima',      'ana@email.com',     'Operadora');
-INSERT INTO funcionarios (id, nome, email, cargo) VALUES (3, 'Carlos Souza',  'carlos@email.com',  'Supervisor');
-INSERT INTO funcionarios (id, nome, email, cargo) VALUES (4, 'Beatriz Ramos', 'bia@email.com',     'T�cnica');
-INSERT INTO funcionarios (id, nome, email, cargo) VALUES (5, 'Lucas Rocha',   'lucas@email.com',   'Analista');
+-- 3.3) Ordens de Serviço
+INSERT INTO tb_ordem_servico (moto_id, data_abertura, descricao, valor)
+VALUES (1, SYSDATE - 10, 'Troca de óleo', 89.90);
+INSERT INTO tb_ordem_servico (moto_id, data_abertura, descricao, valor)
+VALUES (2, SYSDATE - 9, 'Pastilha de freio', 149.50);
+INSERT INTO tb_ordem_servico (moto_id, data_abertura, descricao, valor)
+VALUES (3, SYSDATE - 7, 'Revisão 10k', 399.00);
+INSERT INTO tb_ordem_servico (moto_id, data_abertura, descricao, valor)
+VALUES (4, SYSDATE - 5, 'Câmbio de pneus', 820.00);
+INSERT INTO tb_ordem_servico (moto_id, data_abertura, descricao, valor)
+VALUES (5, SYSDATE - 2, 'Alinhamento', 120.00);
 
--- 3.3) Usu�rios (IDs manuais)
-INSERT INTO usuarios1 (id, nome, email, senha, tipo) VALUES (1, 'Admin',      'admin@mottu.com', 'admin123', 'admin');
-INSERT INTO usuarios1 (id, nome, email, senha, tipo) VALUES (2, 'Operador 1', 'op1@mottu.com',   'senha1',   'operador');
-INSERT INTO usuarios1 (id, nome, email, senha, tipo) VALUES (3, 'Operador 2', 'op2@mottu.com',   'senha2',   'operador');
-INSERT INTO usuarios1 (id, nome, email, senha, tipo) VALUES (4, 'Supervisor', 'sup@mottu.com',   'senha3',   'supervisor');
-INSERT INTO usuarios1 (id, nome, email, senha, tipo) VALUES (5, 'Estagi�rio', 'est@mottu.com',   'senha4',   'operador');
+-- 3.4) Fatos - Saldos (dados para cálculo de somas)
+INSERT INTO fact_saldos VALUES (1,1,4363.55);
+INSERT INTO fact_saldos VALUES (1,2,4794.76);
+INSERT INTO fact_saldos VALUES (1,3,4718.25);
+INSERT INTO fact_saldos VALUES (1,4,5387.45);
+INSERT INTO fact_saldos VALUES (1,5,5027.34);
+INSERT INTO fact_saldos VALUES (2,1,5652.84);
+INSERT INTO fact_saldos VALUES (2,2,4583.02);
+INSERT INTO fact_saldos VALUES (2,3,5555.77);
+INSERT INTO fact_saldos VALUES (2,4,5936.67);
+INSERT INTO fact_saldos VALUES (2,5,4508.74);
 
--- 3.4) Motos
-INSERT INTO motos (modelo, status, zona_atual_id, responsavel_id) VALUES ('Honda CG 160', 'ativa',         'B2', 1);
-INSERT INTO motos (modelo, status, zona_atual_id, responsavel_id) VALUES ('Yamaha Fazer', 'em manuten��o', 'C1', 3);
-INSERT INTO motos (modelo, status, zona_atual_id, responsavel_id) VALUES ('Suzuki Yes',   'ativa',         'A1', 2);
-INSERT INTO motos (modelo, status, zona_atual_id, responsavel_id) VALUES ('Honda Biz',    'ativa',         'A2', 4);
-INSERT INTO motos (modelo, status, zona_atual_id, responsavel_id) VALUES ('Yamaha Factor','inativa',       'B1', 5);
-
--- 3.5) Movimenta��es
-INSERT INTO movimentacoes (moto_id, zona_origem, zona_destino, data_hora, usuario_id)
-  VALUES (1, 'A1', 'B2', SYSDATE - 4, 2);
-INSERT INTO movimentacoes (moto_id, zona_origem, zona_destino, data_hora, usuario_id)
-  VALUES (2, 'B2', 'C1', SYSDATE - 3, 3);
-INSERT INTO movimentacoes (moto_id, zona_origem, zona_destino, data_hora, usuario_id)
-  VALUES (3, 'A2', 'A1', SYSDATE - 2, 4);
-INSERT INTO movimentacoes (moto_id, zona_origem, zona_destino, data_hora, usuario_id)
-  VALUES (4, 'A1', 'A2', SYSDATE - 1, 2);
-INSERT INTO movimentacoes (moto_id, zona_origem, zona_destino, data_hora, usuario_id)
-  VALUES (5, 'B1', 'B2', SYSDATE,     1);
+COMMIT;
